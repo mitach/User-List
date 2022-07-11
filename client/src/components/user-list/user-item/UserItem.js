@@ -1,28 +1,26 @@
+import { UserActions } from "../UserListConstants";
+
 export const UserItem = ({
-    firstName,
-    lastName,
-    imageUrl,
-    email,
-    phoneNumber,
-    createdAt
+    user,
+    onActionClick,
 }) => {
     return (
         <tr>
             <td>
                 <img
-                    src={imageUrl}
-                    alt={`${firstName}'s profile`}
+                    src={user.imageUrl}
+                    alt={`${user.firstName}'s profile`}
                     className="image"
                 />
             </td>
-            <td>{firstName}</td>
-            <td>{lastName}</td>
-            <td>{email}</td>
-            <td>{phoneNumber}</td>
-            <td>{createdAt}</td>
+            <td>{user.firstName}</td>
+            <td>{user.lastName}</td>
+            <td>{user.email}</td>
+            <td>{user.phoneNumber}</td>
+            <td>{user.createdAt}</td>
 
             <td className="actions">
-                <button className="btn edit-btn" title="Edit">
+                <button className="btn edit-btn" title="Edit" onClick={() => onActionClick(user._id, UserActions.Edit)}>
                     <svg
                         aria-hidden="true"
                         focusable="false"
@@ -39,7 +37,7 @@ export const UserItem = ({
                         ></path>
                     </svg>
                 </button>
-                <button className="btn delete-btn" title="Delete">
+                <button className="btn delete-btn" title="Delete" onClick={() => onActionClick(user._id, UserActions.Delete)}>
                     <svg
                         aria-hidden="true"
                         focusable="false"
@@ -56,7 +54,7 @@ export const UserItem = ({
                         ></path>
                     </svg>
                 </button>
-                <button className="btn info-btn" title="Info">
+                <button className="btn info-btn" title="Info" onClick={() => onActionClick(user._id, UserActions.Details)}>
                     <svg
                         aria-hidden="true"
                         focusable="false"
