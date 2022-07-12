@@ -23,7 +23,11 @@ export const create = async (userData) => {
         body: JSON.stringify(userData)
     });
 
-    const result = await response.json();
-
-    return result.user;
+    if (response.ok) {
+        const result = await response.json();
+        
+        return result.user;
+    } else {
+        throw {message: 'Unable to create user!'}
+    }
 }
